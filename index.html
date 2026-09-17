@@ -12,7 +12,7 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #0d1117;
             color: #c9d1d9;
             display: flex;
@@ -65,19 +65,16 @@
             text-align: left;
             width: 100%;
             display: block;
-            transition: all 0.3s ease-in-out; 
+            transition: all 0.2s ease; 
         }
         .menu-item:hover {
             background-color: rgba(88, 166, 255, 0.1);
             color: #58a6ff;
-            transform: translateX(5px);
         }
         .menu-item.active {
             background-color: #21262d;
             color: #f0f6fc;
             border-left: 4px solid #58a6ff;
-            border-radius: 0px 8px 8px 0px;
-            padding-left: 10px;
         }
 
         /* Área Principal de Conteúdo */
@@ -106,11 +103,6 @@
             padding: 24px;
             margin-bottom: 24px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        .card:hover {
-            border-color: #58a6ff;
-            transform: translateY(-2px);
         }
         .card-title {
             font-size: 16px;
@@ -131,17 +123,17 @@
             border-radius: 8px;
             padding: 16px;
             position: relative;
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-            font-size: 14px;
         }
         .code-box pre {
             overflow-x: auto;
             color: #ff7b72;
             padding-right: 80px;
             white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
         }
 
-        /* Botão Copiar Minimalista */
+        /* Botão Copiar */
         .btn-copy {
             position: absolute;
             top: 12px;
@@ -153,12 +145,10 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 12px;
-            font-weight: 500;
             transition: all 0.2s ease;
         }
         .btn-copy:hover {
             background-color: #30363d;
-            border-color: #8b949e;
         }
         .btn-copy.copied {
             background-color: #238636;
@@ -198,7 +188,7 @@
         <!-- ================= CÓDIGOS PYTHON ================= -->
         <div class="card" data-lang="python">
             <div class="card-title">List Comprehension (Criar listas rápidas)</div>
-            <div class="card-desc">A forma mais famosa e elegante de criar listas filtradas ou modificadas em apenas uma linha.</div>
+            <div class="card-desc">A forma mais famosa e elegante de criar listas filtradas em apenas uma linha.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('py1', this)">Copiar</button>
                 <pre id="py1">quadrados = [x**2 for x in range(10) if x % 2 == 0]</pre>
@@ -207,19 +197,18 @@
 
         <div class="card" data-lang="python">
             <div class="card-title">Abrir arquivos com segurança (With Open)</div>
-            <div class="card-desc">O padrão correto para ler arquivos garantindo que ele seja fechado mesmo se ocorrer um erro.</div>
+            <div class="card-desc">O padrão correto para ler arquivos garantindo o fechamento automático.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('py2', this)">Copiar</button>
-                <pre id="py2">with open("dados.txt", "r", encoding="utf-8") as arquivo:
-    conteudo = arquivo.read()
-    print(conteudo)</pre>
+                <pre id="py2">with open("dados.txt", "r") as arquivo:
+    print(arquivo.read())</pre>
             </div>
         </div>
 
         <!-- ================= CÓDIGOS JAVASCRIPT ================= -->
         <div class="card" data-lang="javascript">
             <div class="card-title">Consumir API Rest (Fetch com Async/Await)</div>
-            <div class="card-desc">O comando padrão mais moderno e essencial para buscar dados na internet de forma assíncrona.</div>
+            <div class="card-desc">O comando padrão para buscar dados na internet de forma assíncrona.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('js1', this)">Copiar</button>
                 <pre id="js1">async function buscarDados() {
@@ -232,10 +221,11 @@
 
         <div class="card" data-lang="javascript">
             <div class="card-title">Manipular Arrays (Método .map)</div>
-            <div class="card-desc">Usado constantemente para transformar itens de uma lista em uma nova lista de dados.</div>
+            <div class="card-desc">Usado para transformar itens de uma lista em uma nova lista de dados.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('js2', this)">Copiar</button>
-                <pre id="js2">const numeros = [1, 2, 3, 4];
+                <!-- Texto corrigido abaixo para evitar quebras de carregamento -->
+                <pre id="js2">const numeros = [1, 2, 3];
 const dobrados = numeros.map(num => num * 2);</pre>
             </div>
         </div>
@@ -257,14 +247,12 @@ const dobrados = numeros.map(num => num * 2);</pre>
         <!-- ================= CÓDIGOS C++ ================= -->
         <div class="card" data-lang="cpp">
             <div class="card-title">Estrutura Padrão com Vetor Estilizado</div>
-            <div class="card-desc">Configuração básica essencial de C++ usando a biblioteca padrão de leitura, escrita e vetores.</div>
+            <div class="card-desc">Configuração básica essencial de C++ usando a biblioteca padrão.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('cpp1', this)">Copiar</button>
                 <pre id="cpp1">#include &lt;iostream&gt;
-#include &lt;vector&gt;
 
 int main() {
-    std::vector&lt;int&gt; numeros = {1, 2, 3};
     std::cout &lt;&lt; "C++ Executado!" &lt;&lt; std::endl;
     return 0;
 }</pre>
@@ -274,3 +262,23 @@ int main() {
         <!-- ================= CÓDIGOS HTML e CSS ================= -->
         <div class="card" data-lang="html-css">
             <div class="card-title">Centralizar Elemento Perfeitamente (Flexbox)</div>
+            <div class="card-desc">O trecho de CSS para alinhar qualquer coisa exatamente no meio da tela.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('css1', this)">Copiar</button>
+                <pre id="css1">.centro-perfeito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE PROGRAMAÇÃO TOTALMENTE LIMPO E CORRIGIDO -->
+    <script>
+    function copiarCodigo(idElemento, botao) {
+        var pre = document.getElementById(idElemento);
+        if (!pre) return;
+        
+        var textoParaCopiar = pre.innerText;
+
