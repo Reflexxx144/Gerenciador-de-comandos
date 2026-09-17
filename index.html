@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDocs App</title>
+    <style>
+        /* Estilos Globais - Visual de App Escuro */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Barra Lateral (Menu do App) */
+        .sidebar {
+            width: 260px;
+            background-color: #161b22;
+            border-right: 1px solid #30363d;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #58a6ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .menu-items {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .menu-item {
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #8b949e;
+            transition: 0.2s;
+        }
+        .menu-item.active, .menu-item:hover {
+            background-color: #21262d;
+            color: #f0f6fc;
+        }
+
+        /* Área Principal de Conteúdo */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        header {
+            margin-bottom: 32px;
+        }
+        header h1 {
+            font-size: 28px;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+        }
+        header p {
+            color: #8b949e;
+        }
+
+        /* Cartão do Componente/Comando */
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .card-title {
+            font-size: 16px;
+            color: #f0f6fc;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Caixa de Código Profissional */
+        .code-box {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            position: relative;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 14px;
+        }
+        .code-box pre {
+            overflow-x: auto;
+            color: #ff7b72; /* Cor do código simulando syntax highlight */
+            padding-right: 80px;
+        }
+
+        /* Botão Copiar Minimalista */
+        .btn-copy {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #21262d;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background-color: #30363d;
+            border-color: #8b949e;
+        }
+        .btn-copy.copied {
+            background-color: #238636;
+            color: #ffffff;
+            border-color: #2ea44f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu Lateral do Aplicativo -->
+    <div class="sidebar">
+        <div class="logo">⚡ CodeSnippet App</div>
+        <ul class="menu-items">
+            <li class="menu-item active">Início</li>
+            <li class="menu-item">Botões</li>
+            <li class="menu-item">Formulários</li>
+            <li class="menu-item">Configurações</li>
+        </ul>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        <header>
+            <h1>Minha Biblioteca de Códigos</h1>
+            <p>Clique nos botões para copiar os comandos instantaneamente.</p>
+        </header>
+
+        <!-- Cartão de Comando 1 -->
+        <div class="card">
+            <div class="card-title">🔹 Instalação Básica</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('code1', this)">Copiar</button>
+                <pre id="code1">npm install meu-app-visual</pre>
+            </div>
+        </div>
+
+        <!-- Cartão de Comando 2 -->
+        <div class="card">
+            <div class="card-title">🔹 Criar Botão Moderno</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('code2', this)">Copiar</button>
+                <pre id="code2">&lt;button class="btn-primary"&gt;Salvar&lt;/button&gt;</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Função moderna para copiar o código sem dar alertas chatos na tela
+    function copiarCodigo(idElemento, botao) {
+        var texto = document.getElementById(idElemento).innerText;
+        
+        navigator.clipboard.writeText(texto).then(() => {
+            // Muda o visual do botão para indicar sucesso
+            botao.innerText = "Copiado!";
+            botao.classList.add("copied");
+            
+            // Volta ao normal depois de 2 segundos
+            setTimeout(() => {
+                botao.innerText = "Copiar";
+                botao.classList.remove("copied");
+            }, 2000);
+        });
+    }
+    </script>
+
+</body>
+</html>
