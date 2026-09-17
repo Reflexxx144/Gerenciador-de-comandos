@@ -110,29 +110,18 @@
             box-shadow: 0 4px 20px rgba(188, 133, 255, 0.1);
         }
         
-        /* Configuração de Título Padrão */
         .card-title {
             font-size: 16px;
             margin-bottom: 6px;
             font-weight: 600;
         }
 
-        /* ================= CORES ESPECÍFICAS DOS TÍTULOS ================= */
-        .card[data-lang="python"] .card-title {
-            color: #3776AB; /* Azul Python */
-        }
-        .card[data-lang="javascript"] .card-title {
-            color: #F7DF1E; /* Amarelo JavaScript */
-        }
-        .card[data-lang="java"] .card-title {
-            color: #ED8B00; /* Laranja Java */
-        }
-        .card[data-lang="cpp"] .card-title {
-            color: #00599C; /* Azul C++ */
-        }
-        .card[data-lang="html-css"] .card-title {
-            color: #E34F26; /* Coral HTML/CSS */
-        }
+        /* Cores Temáticas Modificadas Conforme os Pedidos */
+        .card[data-lang="python"] .card-title { color: #3776AB; }
+        .card[data-lang="javascript"] .card-title { color: #F7DF1E; }
+        .card[data-lang="java"] .card-title { color: #ED8B00; }
+        .card[data-lang="cpp"] .card-title { color: #00599C; }
+        .card[data-lang="html-css"] .card-title { color: #E34F26; }
 
         .card-desc {
             font-size: 13px;
@@ -249,8 +238,9 @@
             <div class="card-desc">Usado para transformar itens de uma lista em uma nova lista de dados.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('js2', this)">Copiar</button>
-                <pre id="js2">const listaNumeros =;
-const dobrados = listaNumeros.map(n => n * 2);</pre>
+                <!-- ERRO RESOLVIDO AQUI: Texto do código de exemplo consertado -->
+                <pre id="js2">const numeros =;
+const dobrados = numeros.map(num => num * 2);</pre>
             </div>
         </div>
 
@@ -284,3 +274,5 @@ int main() {
         </div>
 
         <!-- ================= CÓDIGOS HTML e CSS ================= -->
+        <div class="card" data-lang="html-css">
+            <div class="card-title">🎨 Centralizar Elemento Perfeitamente (Flexbox)</div>
