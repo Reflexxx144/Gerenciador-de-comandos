@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevDocs App</title>
+    <title>CheatSheet App - Códigos Famosos</title>
     <style>
-        /* Estilos Globais - Visual de App Escuro */
+        /* Estilos Globais e Reset */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -22,39 +22,62 @@
 
         /* Barra Lateral (Menu do App) */
         .sidebar {
-            width: 260px;
+            width: 280px;
             background-color: #161b22;
             border-right: 1px solid #30363d;
             padding: 24px;
             display: flex;
             flex-direction: column;
             gap: 20px;
+            overflow-y: auto;
         }
         .logo {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: #58a6ff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+        .menu-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #8b949e;
+            letter-spacing: 1px;
+            margin-top: 10px;
         }
         .menu-items {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
+        
+        /* Botões do Menu com Efeitos Suaves */
         .menu-item {
-            padding: 10px 12px;
-            border-radius: 6px;
+            padding: 12px 14px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             color: #8b949e;
-            transition: 0.2s;
+            font-weight: 500;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            width: 100%;
+            display: block;
+            transition: all 0.3s ease-in-out; 
         }
-        .menu-item.active, .menu-item:hover {
+        .menu-item:hover {
+            background-color: rgba(88, 166, 255, 0.1);
+            color: #58a6ff;
+            transform: translateX(5px);
+        }
+        .menu-item.active {
             background-color: #21262d;
             color: #f0f6fc;
+            border-left: 4px solid #58a6ff;
+            border-radius: 0px 8px 8px 0px;
+            padding-left: 10px;
         }
 
         /* Área Principal de Conteúdo */
@@ -83,14 +106,22 @@
             padding: 24px;
             margin-bottom: 24px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover {
+            border-color: #58a6ff;
+            transform: translateY(-2px);
         }
         .card-title {
             font-size: 16px;
             color: #f0f6fc;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: #8b949e;
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         /* Caixa de Código Profissional */
@@ -105,8 +136,9 @@
         }
         .code-box pre {
             overflow-x: auto;
-            color: #ff7b72; /* Cor do código simulando syntax highlight */
+            color: #ff7b72;
             padding-right: 80px;
+            white-space: pre-wrap;
         }
 
         /* Botão Copiar Minimalista */
@@ -122,7 +154,7 @@
             cursor: pointer;
             font-size: 12px;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
         .btn-copy:hover {
             background-color: #30363d;
@@ -137,61 +169,108 @@
 </head>
 <body>
 
-    <!-- Menu Lateral do Aplicativo -->
+    <!-- Menu Lateral com as Principais Linguagens -->
     <div class="sidebar">
-        <div class="logo">⚡ CodeSnippet App</div>
+        <div class="logo">⚡ CodeCentral App</div>
+        
+        <span class="menu-title">Navegação</span>
         <ul class="menu-items">
-            <li class="menu-item active">Início</li>
-            <li class="menu-item">Botões</li>
-            <li class="menu-item">Formulários</li>
-            <li class="menu-item">Configurações</li>
+            <li><button class="menu-item active" onclick="filtrarLinguagem('todos', this)">Ver Todos</button></li>
+        </ul>
+
+        <span class="menu-title">Linguagens</span>
+        <ul class="menu-items">
+            <li><button class="menu-item" onclick="filtrarLinguagem('python', this)">🐍 Python</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('javascript', this)">🟨 JavaScript</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('java', this)">☕ Java</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('cpp', this)">💻 C++</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('html-css', this)">🎨 HTML & CSS</button></li>
         </ul>
     </div>
 
     <!-- Conteúdo Principal -->
     <div class="main-content">
         <header>
-            <h1>Minha Biblioteca de Códigos</h1>
-            <p>Clique nos botões para copiar os comandos instantaneamente.</p>
+            <h1 id="titulo-pagina">Todos os Códigos</h1>
+            <p>Os snippets mais famosos e utilizados no mundo do desenvolvimento.</p>
         </header>
 
-        <!-- Cartão de Comando 1 -->
-        <div class="card">
-            <div class="card-title">🔹 Instalação Básica</div>
+        <!-- ================= CÓDIGOS PYTHON ================= -->
+        <div class="card" data-lang="python">
+            <div class="card-title">List Comprehension (Criar listas rápidas)</div>
+            <div class="card-desc">A forma mais famosa e elegante de criar listas filtradas ou modificadas em apenas uma linha.</div>
             <div class="code-box">
-                <button class="btn-copy" onclick="copiarCodigo('code1', this)">Copiar</button>
-                <pre id="code1">npm install meu-app-visual</pre>
+                <button class="btn-copy" onclick="copiarCodigo('py1', this)">Copiar</button>
+                <pre id="py1">quadrados = [x**2 for x in range(10) if x % 2 == 0]</pre>
             </div>
         </div>
 
-        <!-- Cartão de Comando 2 -->
-        <div class="card">
-            <div class="card-title">🔹 Criar Botão Moderno</div>
+        <div class="card" data-lang="python">
+            <div class="card-title">Abrir arquivos com segurança (With Open)</div>
+            <div class="card-desc">O padrão correto para ler arquivos garantindo que ele seja fechado mesmo se ocorrer um erro.</div>
             <div class="code-box">
-                <button class="btn-copy" onclick="copiarCodigo('code2', this)">Copiar</button>
-                <pre id="code2">&lt;button class="btn-primary"&gt;Salvar&lt;/button&gt;</pre>
+                <button class="btn-copy" onclick="copiarCodigo('py2', this)">Copiar</button>
+                <pre id="py2">with open("dados.txt", "r", encoding="utf-8") as arquivo:
+    conteudo = arquivo.read()
+    print(conteudo)</pre>
             </div>
         </div>
-    </div>
 
-    <script>
-    // Função moderna para copiar o código sem dar alertas chatos na tela
-    function copiarCodigo(idElemento, botao) {
-        var texto = document.getElementById(idElemento).innerText;
-        
-        navigator.clipboard.writeText(texto).then(() => {
-            // Muda o visual do botão para indicar sucesso
-            botao.innerText = "Copiado!";
-            botao.classList.add("copied");
-            
-            // Volta ao normal depois de 2 segundos
-            setTimeout(() => {
-                botao.innerText = "Copiar";
-                botao.classList.remove("copied");
-            }, 2000);
-        });
+        <!-- ================= CÓDIGOS JAVASCRIPT ================= -->
+        <div class="card" data-lang="javascript">
+            <div class="card-title">Consumir API Rest (Fetch com Async/Await)</div>
+            <div class="card-desc">O comando padrão mais moderno e essencial para buscar dados na internet de forma assíncrona.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('js1', this)">Copiar</button>
+                <pre id="js1">async function buscarDados() {
+    const resposta = await fetch('https://github.com');
+    const dados = await resposta.json();
+    console.log(dados);
+}</pre>
+            </div>
+        </div>
+
+        <div class="card" data-lang="javascript">
+            <div class="card-title">Manipular Arrays (Método .map)</div>
+            <div class="card-desc">Usado constantemente para transformar itens de uma lista em uma nova lista de dados.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('js2', this)">Copiar</button>
+                <pre id="js2">const numeros =;
+const dobrados = numeros.map(num => num * 2);</pre>
+            </div>
+        </div>
+
+        <!-- ================= CÓDIGOS JAVA ================= -->
+        <div class="card" data-lang="java">
+            <div class="card-title">Estrutura Básica de uma Classe Principal</div>
+            <div class="card-desc">O ponto de partida oficial obrigatório para rodar qualquer aplicação em Java.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('java1', this)">Copiar</button>
+                <pre id="java1">public class Main {
+    public static void main(String[] args) {
+        System.out.println("Olá, Mundo!");
     }
-    </script>
+}</pre>
+            </div>
+        </div>
 
-</body>
-</html>
+        <!-- ================= CÓDIGOS C++ ================= -->
+        <div class="card" data-lang="cpp">
+            <div class="card-title">Estrutura Padrão com Vetor Estilizado</div>
+            <div class="card-desc">Configuração básica essencial de C++ usando a biblioteca padrão de leitura, escrita e vetores.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('cpp1', this)">Copiar</button>
+                <pre id="cpp1">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main() {
+    std::vector&lt;int&gt; numeros = {1, 2, 3};
+    std::cout &lt;&lt; "C++ Executado!" &lt;&lt; std::endl;
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <!-- ================= CÓDIGOS HTML e CSS ================= -->
+        <div class="card" data-lang="html-css">
+            <div class="card-title">Centralizar Elemento Perfeitamente (Flexbox)</div>
