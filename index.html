@@ -20,7 +20,7 @@
             overflow: hidden;
         }
 
-        /* Barra Lateral (Menu do App) */
+        /* Barra Lateral */
         .sidebar {
             width: 280px;
             background-color: #161b22;
@@ -52,7 +52,7 @@
             gap: 6px;
         }
         
-        /* Botões do Menu com Efeitos Suaves */
+        /* Botões do Menu */
         .menu-item {
             padding: 12px 14px;
             border-radius: 8px;
@@ -77,7 +77,7 @@
             border-left: 4px solid #bc85ff;
         }
 
-        /* Área Principal de Conteúdo */
+        /* Área Principal */
         .main-content {
             flex: 1;
             padding: 40px;
@@ -95,7 +95,7 @@
             color: #8b949e;
         }
 
-        /* Cartão do Componente/Comando */
+        /* Cartões */
         .card {
             background-color: #161b22;
             border: 1px solid #30363d;
@@ -116,7 +116,7 @@
             font-weight: 600;
         }
 
-        /* Cores Temáticas Modificadas Conforme os Pedidos */
+        /* Cores Temáticas */
         .card[data-lang="python"] .card-title { color: #3776AB; }
         .card[data-lang="javascript"] .card-title { color: #F7DF1E; }
         .card[data-lang="java"] .card-title { color: #ED8B00; }
@@ -129,7 +129,7 @@
             margin-bottom: 12px;
         }
 
-        /* Caixa de Código Profissional */
+        /* Caixa de Código */
         .code-box {
             background-color: #0d1117;
             border: 1px solid #30363d;
@@ -165,9 +165,9 @@
             border-color: #bc85ff;
         }
         .btn-copy.copied {
-            background-color: #8a2be2;
+            background-color: #238636;
             color: #ffffff;
-            border-color: #bc85ff;
+            border-color: #2ea043;
         }
     </style>
 </head>
@@ -183,6 +183,153 @@
         </ul>
 
         <span class="menu-title">Linguagens</span>
+        <ul class="menu-items">
+            <li><button class="menu-item" onclick="filtrarLinguagem('python', this)">🐍 Python</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('javascript', this)">🟨 JavaScript</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('java', this)">☕ Java</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('cpp', this)">💻 C++</button></li>
+            <li><button class="menu-item" onclick="filtrarLinguagem('html-css', this)">🎨 HTML & CSS</button></li>
+        </ul>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        <header>
+            <h1 id="titulo-pagina">Todos os Códigos</h1>
+            <p>Os snippets mais famosos e utilizados no mundo do desenvolvimento.</p>
+        </header>
+
+        <!-- PYTHON -->
+        <div class="card" data-lang="python">
+            <div class="card-title">🐍 List Comprehension (Criar listas rápidas)</div>
+            <div class="card-desc">A forma mais famosa e elegante de criar listas filtradas em apenas uma linha.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('py1', this)">Copiar</button>
+                <pre id="py1">quadrados = [x**2 for x in range(10) if x % 2 == 0]</pre>
+            </div>
+        </div>
+
+        <div class="card" data-lang="python">
+            <div class="card-title">🐍 Abrir arquivos com segurança (With Open)</div>
+            <div class="card-desc">O padrão correto para ler arquivos garantindo o fechamento automático.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('py2', this)">Copiar</button>
+                <pre id="py2">with open("dados.txt", "r") as arquivo:
+    print(arquivo.read())</pre>
+            </div>
+        </div>
+
+        <!-- JAVASCRIPT -->
+        <div class="card" data-lang="javascript">
+            <div class="card-title">🟨 Consumir API Rest (Fetch com Async/Await)</div>
+            <div class="card-desc">O comando padrão para buscar dados na internet de forma assíncrona.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('js1', this)">Copiar</button>
+                <pre id="js1">async function buscarDados() {
+    const resposta = await fetch('https://api.github.com');
+    const dados = await resposta.json();
+    console.log(dados);
+}</pre>
+            </div>
+        </div>
+
+        <div class="card" data-lang="javascript">
+            <div class="card-title">🟨 Manipular Arrays (Método .map)</div>
+            <div class="card-desc">Usado para transformar itens de uma lista em uma nova lista de dados.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('js2', this)">Copiar</button>
+                <pre id="js2">const numeros = [1, 2, 3, 4, 5];
+const dobrados = numeros.map(num => num * 2);</pre>
+            </div>
+        </div>
+
+        <!-- JAVA -->
+        <div class="card" data-lang="java">
+            <div class="card-title">☕ Estrutura Básica de uma Classe Principal</div>
+            <div class="card-desc">O ponto de partida oficial obrigatório para rodar qualquer aplicação em Java.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('java1', this)">Copiar</button>
+                <pre id="java1">public class Main {
+    public static void main(String[] args) {
+        System.out.println("Olá, Mundo!");
+    }
+}</pre>
+            </div>
+        </div>
+
+        <!-- C++ -->
+        <div class="card" data-lang="cpp">
+            <div class="card-title">💻 Estrutura Padrão com Vetor Estilizado</div>
+            <div class="card-desc">Configuração básica essencial de C++ usando a biblioteca padrão.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('cpp1', this)">Copiar</button>
+                <pre id="cpp1">#include &lt;iostream&gt;
+
+int main() {
+    std::cout &lt;&lt; "C++ Executado!" &lt;&lt; std::endl;
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <!-- HTML & CSS -->
+        <div class="card" data-lang="html-css">
+            <div class="card-title">🎨 Centralizar Elemento Perfeitamente (Flexbox)</div>
+            <div class="card-desc">O snippet definitivo para alinhar elementos no centro absoluto da tela.</div>
+            <div class="code-box">
+                <button class="btn-copy" onclick="copiarCodigo('html1', this)">Copiar</button>
+                <pre id="html1">.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script com as Funções de Copiar e Filtrar -->
+    <script>
+        // Função para copiar o código
+        function copiarCodigo(idElemento, botao) {
+            const textoCodigo = document.getElementById(idElemento).innerText;
+            
+            navigator.clipboard.writeText(textoCodigo).then(() => {
+                const textoOriginal = botao.innerText;
+                botao.innerText = "Copiado!";
+                botao.classList.add("copied");
+
+                setTimeout(() => {
+                    botao.innerText = textoOriginal;
+                    botao.classList.remove("copied");
+                }, 2000);
+            }).catch(err => {
+                console.error("Erro ao copiar: ", err);
+            });
+        }
+
+        // Função para filtrar os cards por linguagem
+        function filtrarLinguagem(linguagem, botao) {
+            const cards = document.querySelectorAll('.card');
+            const botoesMenu = document.querySelectorAll('.menu-item');
+
+            botoesMenu.forEach(btn => btn.classList.remove('active'));
+            botao.classList.add('active');
+
+            cards.forEach(card => {
+                if (linguagem === 'todos' || card.getAttribute('data-lang') === linguagem) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const titulo = document.getElementById('titulo-pagina');
+            titulo.innerText = linguagem === 'todos' ? 'Todos os Códigos' : `Códigos ${botao.innerText}`;
+        }
+    </script>
+</body>
+</html>        <span class="menu-title">Linguagens</span>
         <ul class="menu-items">
             <li><button class="menu-item" onclick="filtrarLinguagem('python', this)">🐍 Python</button></li>
             <li><button class="menu-item" onclick="filtrarLinguagem('javascript', this)">🟨 JavaScript</button></li>
