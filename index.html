@@ -224,9 +224,8 @@
             <div class="card-desc">Usado para transformar itens de uma lista em uma nova lista de dados.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('js2', this)">Copiar</button>
-                <!-- Texto corrigido abaixo para evitar quebras de carregamento -->
-                <pre id="js2">const numeros = [1, 2, 3];
-const dobrados = numeros.map(num => num * 2);</pre>
+                <pre id="js2">const listaNumeros = [1, 2, 3, 4];
+const dobrados = listaNumeros.map(n => n * 2);</pre>
             </div>
         </div>
 
@@ -274,11 +273,12 @@ int main() {
         </div>
     </div>
 
-    <!-- SCRIPT DE PROGRAMAÇÃO TOTALMENTE LIMPO E CORRIGIDO -->
+    <!-- SCRIPT CORRIGIDO COM LAÇOS DE COMPATIBILIDADE MÁXIMA -->
     <script>
     function copiarCodigo(idElemento, botao) {
-        var pre = document.getElementById(idElemento);
-        if (!pre) return;
+        var campoTexto = document.getElementById(idElemento);
+        if (!campoTexto) return;
         
-        var textoParaCopiar = pre.innerText;
+        var textoFinal = campoTexto.innerText;
 
+        // Cria elemento temporário seguro
