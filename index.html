@@ -13,7 +13,7 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0d1117; /* Fundo escuro padrão */
+            background-color: #0d1117;
             color: #c9d1d9;
             display: flex;
             height: 100vh;
@@ -34,7 +34,7 @@
         .logo {
             font-size: 18px;
             font-weight: bold;
-            color: #bc85ff; /* ROXO SUTIL: No logotipo principal */
+            color: #bc85ff;
             padding-bottom: 10px;
             border-bottom: 1px solid #30363d;
         }
@@ -68,13 +68,13 @@
             transition: all 0.2s ease; 
         }
         .menu-item:hover {
-            background-color: rgba(188, 133, 255, 0.1); /* ROXO SUTIL: Fundo clarinho ao passar o mouse */
-            color: #bc85ff; /* ROXO SUTIL: Texto ao passar o mouse */
+            background-color: rgba(188, 133, 255, 0.1);
+            color: #bc85ff;
         }
         .menu-item.active {
             background-color: #21262d;
             color: #f0f6fc;
-            border-left: 4px solid #bc85ff; /* ROXO SUTIL: Borda do item selecionado */
+            border-left: 4px solid #bc85ff;
         }
 
         /* Área Principal de Conteúdo */
@@ -106,15 +106,34 @@
             transition: border-color 0.2s, box-shadow 0.2s;
         }
         .card:hover {
-            border-color: #bc85ff; /* ROXO SUTIL: Borda acende em roxo ao passar o mouse */
-            box-shadow: 0 4px 20px rgba(188, 133, 255, 0.1); /* ROXO SUTIL: Brilho neon bem discreto */
+            border-color: #bc85ff;
+            box-shadow: 0 4px 20px rgba(188, 133, 255, 0.1);
         }
+        
+        /* Configuração de Título Padrão */
         .card-title {
             font-size: 16px;
-            color: #f0f6fc;
             margin-bottom: 6px;
             font-weight: 600;
         }
+
+        /* ================= CORES ESPECÍFICAS DOS TÍTULOS ================= */
+        .card[data-lang="python"] .card-title {
+            color: #3776AB; /* Azul Python */
+        }
+        .card[data-lang="javascript"] .card-title {
+            color: #F7DF1E; /* Amarelo JavaScript */
+        }
+        .card[data-lang="java"] .card-title {
+            color: #ED8B00; /* Laranja Java */
+        }
+        .card[data-lang="cpp"] .card-title {
+            color: #00599C; /* Azul C++ */
+        }
+        .card[data-lang="html-css"] .card-title {
+            color: #E34F26; /* Coral HTML/CSS */
+        }
+
         .card-desc {
             font-size: 13px;
             color: #8b949e;
@@ -154,10 +173,10 @@
         }
         .btn-copy:hover {
             background-color: #30363d;
-            border-color: #bc85ff; /* ROXO SUTIL: Borda do botão copiar */
+            border-color: #bc85ff;
         }
         .btn-copy.copied {
-            background-color: #8a2be2; /* ROXO SUTIL: Botão fica roxo escuro ao confirmar a cópia */
+            background-color: #8a2be2;
             color: #ffffff;
             border-color: #bc85ff;
         }
@@ -193,7 +212,7 @@
 
         <!-- ================= CÓDIGOS PYTHON ================= -->
         <div class="card" data-lang="python">
-            <div class="card-title">List Comprehension (Criar listas rápidas)</div>
+            <div class="card-title">🐍 List Comprehension (Criar listas rápidas)</div>
             <div class="card-desc">A forma mais famosa e elegante de criar listas filtradas em apenas uma linha.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('py1', this)">Copiar</button>
@@ -202,7 +221,7 @@
         </div>
 
         <div class="card" data-lang="python">
-            <div class="card-title">Abrir arquivos com segurança (With Open)</div>
+            <div class="card-title">🐍 Abrir arquivos com segurança (With Open)</div>
             <div class="card-desc">O padrão correto para ler arquivos garantindo o fechamento automático.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('py2', this)">Copiar</button>
@@ -213,7 +232,7 @@
 
         <!-- ================= CÓDIGOS JAVASCRIPT ================= -->
         <div class="card" data-lang="javascript">
-            <div class="card-title">Consumir API Rest (Fetch com Async/Await)</div>
+            <div class="card-title">🟨 Consumir API Rest (Fetch com Async/Await)</div>
             <div class="card-desc">O comando padrão para buscar dados na internet de forma assíncrona.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('js1', this)">Copiar</button>
@@ -226,7 +245,7 @@
         </div>
 
         <div class="card" data-lang="javascript">
-            <div class="card-title">Manipular Arrays (Método .map)</div>
+            <div class="card-title">🟨 Manipular Arrays (Método .map)</div>
             <div class="card-desc">Usado para transformar itens de uma lista em uma nova lista de dados.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('js2', this)">Copiar</button>
@@ -237,7 +256,7 @@ const dobrados = listaNumeros.map(n => n * 2);</pre>
 
         <!-- ================= CÓDIGOS JAVA ================= -->
         <div class="card" data-lang="java">
-            <div class="card-title">Estrutura Básica de uma Classe Principal</div>
+            <div class="card-title">☕ Estrutura Básica de uma Classe Principal</div>
             <div class="card-desc">O ponto de partida oficial obrigatório para rodar qualquer aplicação em Java.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('java1', this)">Copiar</button>
@@ -251,7 +270,7 @@ const dobrados = listaNumeros.map(n => n * 2);</pre>
 
         <!-- ================= CÓDIGOS C++ ================= -->
         <div class="card" data-lang="cpp">
-            <div class="card-title">Estrutura Padrão com Vetor Estilizado</div>
+            <div class="card-title">💻 Estrutura Padrão com Vetor Estilizado</div>
             <div class="card-desc">Configuração básica essencial de C++ usando a biblioteca padrão.</div>
             <div class="code-box">
                 <button class="btn-copy" onclick="copiarCodigo('cpp1', this)">Copiar</button>
@@ -265,7 +284,3 @@ int main() {
         </div>
 
         <!-- ================= CÓDIGOS HTML e CSS ================= -->
-        <div class="card" data-lang="html-css">
-            <div class="card-title">Centralizar Elemento Perfeitamente (Flexbox)</div>
-            <div class="card-desc">O trecho de CSS para alinhar qualquer coisa exatamente no meio da tela.</div>
-            <div class="code-box">
